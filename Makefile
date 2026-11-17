@@ -59,10 +59,27 @@ create_environment:
 #################################################################################
 
 
-## Make dataset
+S3_BASE_URL = https://s3.zih.tu-dresden.de/netds3o:public-teaching-internet-measurements/2026
+
+DATA_01 = \
+	data/raw/01/2026-01-01-tud-ribs.csv.zst \
+	data/raw/01/2026-01-01T00_00_00Z-ribs.csv.zst
+
+DATA_02 = \
+	data/raw/02/ribs.ris.2011-08-01.csv.zst \
+	data/raw/02/ribs.ris.2019-01-31.csv.zst
+
+## Download raw datasets (data/raw/01 and data/raw/02)
 .PHONY: data
-data: requirements
-	$(PYTHON_INTERPRETER) internet_measurement_lab/dataset.py
+data: $(DATA_01) $(DATA_02)
+
+data/raw/01/%:
+	@mkdir -p $(@D)
+	curl -fL --retry 3 -C - -o $@.part $(S3_BASE_URL)/01/$* && mv $@.part $@
+
+data/raw/02/%:
+	@mkdir -p $(@D)
+	curl -fL --retry 3 -C - -o $@.part $(S3_BASE_URL)/02/$* && mv $@.part $@
 
 
 #################################################################################
