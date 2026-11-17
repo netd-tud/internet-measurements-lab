@@ -6,6 +6,10 @@
 
 IM lab
 
+# Requirements/Recommended environment
+
+- [uv](https://docs.astral.sh/uv/)
+
 ## Project Organization
 
 ```
