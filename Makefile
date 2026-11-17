@@ -69,9 +69,12 @@ DATA_02 = \
 	data/raw/02/ribs.ris.2011-08-01.csv.zst \
 	data/raw/02/ribs.ris.2019-01-31.csv.zst
 
-## Download raw datasets (data/raw/01 and data/raw/02)
+DATA_03 = \
+	data/raw/03/2019-04-20-rrc00-rrc23-aw.csv.zst
+
+## Download raw datasets (data/raw/01, data/raw/02 and data/raw/03)
 .PHONY: data
-data: $(DATA_01) $(DATA_02)
+data: $(DATA_01) $(DATA_02) $(DATA_03)
 
 data/raw/01/%:
 	@mkdir -p $(@D)
@@ -80,6 +83,10 @@ data/raw/01/%:
 data/raw/02/%:
 	@mkdir -p $(@D)
 	curl -fL --retry 3 -C - -o $@.part $(S3_BASE_URL)/02/$* && mv $@.part $@
+
+data/raw/03/%:
+	@mkdir -p $(@D)
+	curl -fL --retry 3 -C - -o $@.part $(S3_BASE_URL)/03/$* && mv $@.part $@
 
 
 #################################################################################
