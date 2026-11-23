@@ -70,7 +70,8 @@ DATA_02 = \
 	data/raw/02/ribs.ris.2019-01-31.csv.zst
 
 DATA_03 = \
-	data/raw/03/2019-04-20-rrc00-rrc23-aw.csv.zst
+	data/raw/03/2019-04-20-rrc00-rrc23-aw.csv.zst \
+	data/raw/03/2019-04-20-rrc00-rib.csv.zst
 
 ## Download raw datasets (data/raw/01, data/raw/02 and data/raw/03)
 .PHONY: data
